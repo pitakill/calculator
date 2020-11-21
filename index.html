@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Calculadora</title>
+  </head>
+  <body>
+    <input type="text" id="operator1">
+    <input type="text" id="operator2">
+    <input type="button" id="addition" value="Sumar">
+    <input type="button" id="substraction" value="Restar">
+    <input type="button" id="multiplication" value="Multiplicar">
+    <input type="button" id="division" value="Dividir">
+    <div id="wrapper">
+    </div>
+    <script>
+      const operator1 = document.getElementById("operator1");
+      const operator2 = document.getElementById("operator2");
+      const wrapper = document.getElementById("wrapper");
+
+      const buttons = [
+        document.getElementById("addition"),
+        document.getElementById("substraction"),
+        document.getElementById("multiplication"),
+        document.getElementById("division")
+      ];
+
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function(e) {
+          const op1 = parseFloat(operator1.value, 10);
+          const op2 = parseFloat(operator2.value, 10);
+
+          const h1 = document.createElement("h1");
+          const operation = e.target.id;
+          var result;
+
+          if (operation === "addition") {
+            result = op1 + op2;
+          } else if (operation === "substraction") {
+            result = op1 - op2;
+          } else if (operation === "multiplication") {
+            result = op1 * op2;
+          } else if (operation === "division") {
+            result = op1 / op2;
+          }
+
+          wrapper.innerHTML = "";
+          h1.innerText = result;
+
+          wrapper.appendChild(h1);
+        });
+      }
+    </script>
+  </body>
+</html>
