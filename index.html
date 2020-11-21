@@ -25,24 +25,31 @@
         document.getElementById("division")
       ];
 
+      const Calculator = function(op1, op2) {
+        this.op1 = parseFloat(op1, 10);
+        this.op2 = parseFloat(op2, 10);
+
+        this.addition = function() {
+          return this.op1 + this.op2;
+        }
+        this.substraction = function() {
+          return this.op1 - this.op2;
+        }
+        this.multiplication = function() {
+          return this.op1 * this.op2;
+        }
+        this.division = function() {
+          return this.op1 / this.op2;
+        }
+      };
+
       for (var i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("click", function(e) {
-          const op1 = parseFloat(operator1.value, 10);
-          const op2 = parseFloat(operator2.value, 10);
+          const cal = new Calculator(operator1.value, operator2.value);
 
           const h1 = document.createElement("h1");
           const operation = e.target.id;
-          var result;
-
-          if (operation === "addition") {
-            result = op1 + op2;
-          } else if (operation === "substraction") {
-            result = op1 - op2;
-          } else if (operation === "multiplication") {
-            result = op1 * op2;
-          } else if (operation === "division") {
-            result = op1 / op2;
-          }
+          const result = cal[operation]();
 
           wrapper.innerHTML = "";
           h1.innerText = result;
