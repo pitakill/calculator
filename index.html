@@ -43,20 +43,20 @@
         }
       };
 
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", function(e) {
+      buttons.forEach(function(element) {
+        element.addEventListener("click", function(event){
           const cal = new Calculator(operator1.value, operator2.value);
 
-          const h1 = document.createElement("h1");
-          const operation = e.target.id;
+          const operation = event.target.id;
           const result = cal[operation]();
 
-          wrapper.innerHTML = "";
-          h1.innerText = result;
+          const heading = document.createElement("h1");
+          heading.innerText = result;
 
-          wrapper.appendChild(h1);
+          wrapper.innerHTML = "";
+          wrapper.appendChild(heading);
         });
-      }
+      });
     </script>
   </body>
 </html>
